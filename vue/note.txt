@@ -1,0 +1,149 @@
+UNXT：服务端渲染
+
+WEEX：原生app
+
+动画，组件化
+
+Axio 数据获取， Router 路由， VueX 数据共享， Strylus 样式，插件 ，公用组件
+
+js es6 webpack npm
+
+MVP 结构  jquery 面向对象的方法
+
+mvp dom操作                              面向 dom
+mvvm     数据操作(vm(ViewModel)层)       面向 数据
+
+1.
+input button ul,li
+2.
+Vue({el:,data:,method:})
+3.
+v-model=""
+@click=""
+v-for="item in list"
+
+组件
+
+传递子组件数据
+
+组件： TodoItem  todo-item
+ 1.
+ Vue.component("",{
+    template:"<li></li>",
+});
+2.
+< v-for = "" ></>
+3.
+v-bind:content=""
+4.
+props:["content"]
+5.
+{{  }}
+
+局部组件
+
+1、父组件可以使用 props 把数据传给子组件。
+2、子组件可以使用 $emit 触发父组件的自定义事件。
+
+v-bind:content="item"
+props:["content"]
+动态地绑定一个或多个特性，或一个组件 prop 到表达式。
+
+对象
+var TodoItem = {    template:"<li></li>",props:["content"]}
+components : {TodoItem:TodoItem}
+
+v-on deleteItem delete-iteme
+
+子组件向父组件传递数据 删除一项目
+1.
+@click = ""
+methods:
+this.$emit("handdelete")  "事件名称全小写，这很重要"
+@handdetete
+methods
+
+note:
+    触发一个事件，执行一个方法。比如 click="f1()" 意思是，为单击事件绑定一个方法。
+
+$emit()  子组件向父组件注册一个事件,事件可以被父组件v-on监控,可以绑定方法。 起到传值的作用。
+
+splice(index,1)   数组方法，删除数组内容(索引，删除几个元素)，返回值是删除的元素数组
+
+vue 实例：
+
+1.$.destroy
+
+模板语法：
+
+v-text 可以消除{{}} 的闪烁
+v-html
+v-bind:titel  元素添加新属性，传值和保存值的作用。
+
+computed get set 方法  体现数据的依赖以及重新计算
+
+变色方案：
+:class = ""
+    {} 对象
+    [] 数组
+
+:style = ""
+    {} 对象
+    [] 数组
+
+条件渲染：
+
+v-if /  v-show (display:none 原理,性能应该要高一点)
+
+v-else
+
+key 解决dom复用时input内容不清空
+
+列表渲染问题：
+list[2] = {id:"005,text:"5"}  vue会渲染失败，必须用数组函数(push,pop,shift,unshift,splice,sort,reverse)
+vm.list.splice(2,1,{id:"005",text:"text555"});
+
+方法二：数组的引用( vm.list = [ ... ] )  对象引用也适用
+
+Vue.set(vm.userInfo,"key","value"); //全局方法
+
+vm.$set(vm.userInfo,"key","value")
+
+组件bug：
+is 属性
+子组件{{}}  data中必须是函数，否则会出问题。
+
+操作dom:
+添加属性 ref =  "hello"
+this.$refs.hello
+
+通过引用访问子组件的数据,ref作用在父组件上
+ref="one"
+this.$refs.one.number
+
+Vue 特点,单向数据流：子组件不能直接改父组件的数据
+子组件props的数据需要赋值到data中，然后通过空值data中数据来空值props外部数据
+
+
+
+
+总结：传递数据的三种方法
+props ：
+父 -> 子   子组件使用 -> 父组件数据    绑定数性，访问属性值   作用代码 子 中
+$emit:
+子 -> 父   父组件使用 -> 子组件数据    事件方法传递参数       作用代码 父 中
+ref:
+子 -> 父   父组件使用 -> 子组件数据    子组件引用             作用代码 父 中
+
+
+组件绑定原生事件：@click.native="handleClick"  添加.native即可,
+
+组建之间传值有3层  1.vuex 2. 发布订阅模式,又叫总线模式
+
+总线模式,观察者模式：
+    prototype.bus = new Vue() 绑定属性,注册事件，挂载钩子函数mounted(msg)监听事件
+    保存一次 this
+
+插槽： <slot></slot>  放子组件中 代替父组件所有内容， 父组件加 slot="header" 子组件加 name="header" 以此来替换不同插槽
+
+Vue 作用域查插槽：

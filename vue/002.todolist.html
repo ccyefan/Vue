@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id = "app">
+    <input type="text" name="name" v-model="inputVal">
+    <button type="button" @click = "tijiao" >提交</button>
+    <ul>
+        <!-- <li v-for="item in list" > {{ item }} </li> -->
+        <todo-item v-bind:content="item" v-for="item in list" >  </todo-item>
+    </ul>
+</div>
+<script>
+/*    Vue.component("TodoItem",{
+        template:"<li> {{  content  }} </li>",
+        props:['content']
+    });*/
+
+    var TodoItem = {
+        template:"<li> {{  content  }} </li>",
+        props:['content']
+    };
+
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            inputVal:'',
+            list:[]
+        },
+        methods:{
+            tijiao:function(){
+                this.list.push(this.inputVal);
+                this.inputVal = '';
+            }
+        },
+        components:{
+            TodoItem:TodoItem
+        }
+    });
+</script>
+</body>
+</html>

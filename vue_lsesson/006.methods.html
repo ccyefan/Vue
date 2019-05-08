@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+<div id = "app">
+    <input type="text" v-model="add" v-on:keyup.enter="fn($event,1)">
+    <ul>
+        <li v-for= "item in msg">{{item}}</li>
+    </ul>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+let vm = new Vue({
+    el:'#app',
+    data:{
+        add:'',
+        msg: []
+    },
+    methods:{
+        fn(e){
+            //if(e.keyCode === 13) {
+                this.msg.push(this.add);
+                this.add = '';
+            //}
+        }
+    }
+});
+</script>
+</body>
+</html>

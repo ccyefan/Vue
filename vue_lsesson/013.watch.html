@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id = "app">
+        <button @click="changeGood">变好</button>
+        <button @click="changeBad">变坏</button>
+        {{heart}} {{wait}}
+    </div>
+
+    <script>
+        let vm = new Vue({
+            el:'#app',
+            data:{
+                heart:"爱心",
+                wait:''
+            },
+            methods:{
+                changeGood(){
+                    this.heart = "好心"
+                },
+                changeBad(){
+                    this.heart = "坏心"
+                }
+            },
+            watch:{
+                heart(newVal,oldVal){
+                    this.wait = '稍等正在变心中';
+                    setTimeout(() => {
+                        this.wait = '变心完成'
+                    },2000);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

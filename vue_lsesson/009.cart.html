@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<div id = "app" class = "container">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" name=""> 全选</th>
+                        <th>商品</th>
+                        <th>单价</th>
+                        <th>数量</th>
+                        <th>小计</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="product in products">
+                        <td><input type="checkbox" v-model="product.isSelected"></td>
+                        <td>{{product.name}}</td>
+                        <td>{{product.price}}</td>
+                        <td>{{product.count}}</td>
+                        <td>{{product.price * product.count}}</td>
+                        <td><button class="btn btn-danger" @click="remove(product)">删除</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            products:[
+                {isSelected:true,price:30,count:7,name:'霍氏(Chiaus)1'},
+                {isSelected:false,price:33,count:3,name:'霍氏(Chiaus)2'},
+                {isSelected:true,price:32,count:2,name:'霍氏(Chiaus)3'}
+            ]
+        },
+        methods:{
+            remove(pro){
+                this.products = this.products.filter(item => item !== pro);
+            }
+        }
+    });
+</script>
+</body>
+</html>

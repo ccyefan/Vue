@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+<div id="app">
+<button v-on:click="fn('hello')">点击</button>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+let vm = new Vue({
+    el:'#app',
+    data:{msg:'alex'},
+    methods:{
+        fn(str){
+            alert('aaa');
+            alert(str);
+            console.log(this);
+            console.log(this.msg);
+        }
+    }
+});
+</script>
+</body>
+</html>
+、

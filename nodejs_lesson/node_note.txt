@@ -1,0 +1,143 @@
+1. 安装
+2. 运行文件 node 1.js
+3. REPL (交互式运行环境)  node 进入
+   name = 'Alex'
+   var name = 'Alex' 错误
+   var setName = function(name){this.name = name}
+
+
+4. 函数编写和执行
+
+5. console.log();   node 1.js >  1.txt
+   console.error();     2>2.txt
+   console.warn();
+   console.assert();
+   console.time() console.timeEnd();
+
+   console.assert(1==1);
+   console.assert(1==2,'1不等于2')
+
+6. 控制台
+   global
+
+   setTimeout()
+   setInterval()
+
+7. 缓冲区对象Buffer
+   全局，定长，new  字节单位大小，字节数组，字符串
+
+   var buf = new Buffer(8);
+   buf.fill(1);
+
+   var buf2 = new Buffer([1,2,3]);
+   var buf3 = new Buffer([65,66,67]); //打印出的时16进制
+   var buf4 = new Buffer('ABC');
+
+   var str = "百度";
+   stt.length
+   var buf5 = new Buffer(str);
+   buf5.length
+   buf5.toString();
+8. 模块，包
+
+   exports  require('./sum.js')
+
+   //原理
+   function(exports,require,module,__filename,__dirname){
+       var sum =  function(a,b){
+           return a + b;
+       }
+       exports.sum =  sum;
+       return module.exports;
+   }
+   exports 导出对象
+   module 当前模块对象 module.exports 和 exports 指向相同对象
+   require 加载模块的方法
+   __filename  当前模块绝对路径
+   __dirname   当前模块据对目录
+9.
+   require("sum");
+   node_modules/sum/index.js
+   或
+   package.json中"main":"./sum.js";
+
+10.
+  三方模块
+  npm install uuid
+  require('uuid');
+
+  --save
+  -g
+
+
+
+
+11.
+  内置模块fs
+  readFile(filename,option,callback)
+  writeFile
+  mkdir
+  readdir
+  stat 查看文件目录信息
+  exists
+  copy
+
+是不是内置模块，再找 node_modules
+
+  readFile('1.txt','utf8',function(err,data){
+
+  });
+
+
+  tyr{
+    readFileSync('2.txt','utf8');
+  }catch(e){
+
+  }
+
+  copy 使用 readFile  writeFile  来实现
+
+  mkdirSync();  readdir();
+
+  stat()   .isDirectory()    .isFile()
+
+  .exists('test',funciont(exists){});
+
+  path.join(__dirname,'a','b','c');
+
+  resolve(); 解析出一个绝对路径
+
+  basename(); 获取一个路径中的文件名
+
+  extname(); 获取一个路径中的扩展名
+
+12.
+  事件  EvenEmitter
+
+  events 模块
+
+  emit   发出,发生函数
+
+  addListener  和  on  功能时一致的
+
+  setMaxListeners(1)  最大线程数 1
+
+  once()  只出发一次
+
+  em.listener('bell');   获取监听函数
+
+  还可以传递函数
+
+  removeListener  removeAllListeners
+13.
+  流
+  可读流
+  fs 模块  createReadStream('1.txt')
+  data  end  err
+  pause()  resume()
+  可写流
+  createWriteStream('2.txt')
+  out.write(data); 缓缓区写满返回false
+  out.on('drain',function(){});  缓冲区清空时触
+  out.end();
+

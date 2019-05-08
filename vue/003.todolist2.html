@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id = "app">
+   <input id = "inputVa"  v-model = "inputVal" />
+   <button @click="submitVal" >提交</button>
+   <ul>
+       <!-- <li v-for = "item in vals" >
+           {{item}}
+       </li> -->
+       <todo-item  @delete="handDelete(index)" v-bind:content = "item" v-bind:index = "index" v-for = "(item,index) in vals" ></todo-item>
+   </ul>
+</div>
+<script>
+
+/*Vue.component("TodoItem" , {
+    props:['content'],
+    template:"<li>{{ content }}</li>"
+});*/
+    var TodoItem = {
+        props:['content'],
+        template:"<li @click='handleItemClicke'>{{ content }}</li>",
+        methods:{
+            handleItemClicke:function(){
+                //alert("delete")
+                this.$emit("delete");
+            }
+        }
+    };
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            inputVal:'',
+            vals:[]
+        },
+        methods:{
+            submitVal(){
+                this.vals.push(this.inputVal);
+                this.inputVal = '';
+            },
+            handDelete(index){
+                //alert('delete')
+                //alert(index)
+                this.vals.splice(index,1);
+            }
+        },
+        components : {
+            TodoItem : TodoItem
+        }
+    });
+</script>
+</body>
+</html>
+
+

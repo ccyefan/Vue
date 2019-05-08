@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+<div id="app">
+    <div @click.capture="parent">
+    parent
+        <div @click.once.stop="son">
+        son
+            <div @click="grandson">
+            grandson
+            </div>
+        </div>
+    </div>
+    <a href="https:www.baidu.com" @click.prevent="parent">去百度</a>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+let vm = new Vue({
+    el:'#app',
+    methods:{
+        parent(){
+            alert('parent');
+        },
+        son(){
+            alert('son');
+        },
+        grandson(){
+            alert('grandson');
+        }
+    }
+});
+</script>
+</body>
+</html>

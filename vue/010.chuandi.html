@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <conutdiv v-bind:count="2" @handlenum="addClick"></conutdiv>
+    <conutdiv v-bind:count="3" @handlenum="addClick"></conutdiv>
+    <div ref="three">
+        {{ total }}
+    </div>
+</div>
+<script>
+
+var conutdiv = {
+    template:"<div @click='change'>{{ number }}</div>",
+    props:["count"],
+    methods:{
+        change:function(){
+            this.number ++;
+
+            //console.log(vm.$refs.one.count)
+
+            this.$emit("handlenum", 1); //this.number
+        }
+    },
+    data:function(){
+        return {
+            number : this.count
+        }
+    }
+}
+
+var vm = new Vue({
+    el:'#app',
+    components:{
+        conutdiv:conutdiv
+    },
+    data:{
+        total:5
+    },
+    methods:{
+        addClick:function(step){
+            this.total += step;
+        }
+    }
+});
+</script>
+</body>
+</html>
+
+

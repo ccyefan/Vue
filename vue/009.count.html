@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <conutdiv @change="handleChange" ref="one"></conutdiv>
+    <conutdiv @change="handleChange" ref="two"></conutdiv>
+    <div id="">{{total}}</div>
+</div>
+<script>
+Vue.component("conutdiv",{
+    template:"<div @click='handleClick'>{{count}}</div>",
+    data:function(){
+        return {
+            count:0
+        }
+    },
+    methods:{
+        handleClick:function(){
+            this.count++;
+            this.$emit("change");
+        }
+    }
+});
+
+var vm = new Vue({
+    el:'#app',
+    data:{
+        total:''
+    },
+    methods:{
+        handleChange:function(){
+            //this.total = 1
+            //console.log( this.$refs.two.count );
+            this.total = this.$refs.two.count + this.$refs.one.count
+        }
+    }
+});
+</script>
+</body>
+</html>

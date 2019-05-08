@@ -1,0 +1,117 @@
+建用户界面的框架
+    数据驱动
+    组件化
+
+https://www.imooc.com/video/6346/0
+
+vue   npm,cdn
+
+npm init -y
+npm install vue
+
+vue es5 语法，不支持ie8及其以下
+
+vue 对象  2个属性：el(字符串),data(对象)
+{{}}  取值表达式,通过数据对象的属性取值,可以是属性变量也可以是三元运算符
+
+
+html元素(dom树) id   -->     VUE
+视图 关联            <--     VUE
+
+data get方法 ：调用数据的get方法渲染视图。对数据创建一个watcher,只要数据变化就会重新执行get方法。通常{{}},v-for 等各种指令场景。
+data set方法 ：调用数据的set方法修改数据。对视图创建一个watcher,只要html的值发生变化就触发set方法。v-model指令场景。
+
+针对dom元素创建一个数据对象模型
+
+1.数据是 对象
+vue不能检测到对象属性的添加和删除(Object.defineProperty get/set)
+三种：$set 方法， 对象替换， es7语法
+Vue.set(vm.someObject, 'b', 2)
+vm.set();
+Object.assign(newObjcet,this.someObject,Oldobjce );
+2.数据是 数组
+数组不能通过索引操作，1.方法操作(push()...)2.替换(filter()来替换)
+
+指令都是双向的
+v-model 双向
+v-onece 绑定一次
+v-html  内容作为html代码渲染
+v-text  消除{{}}闪烁问题
+
+v-for      fruit in msg
+        数组，对象，字符串，数字(循环多少次)
+
+对html元素的某个事件，绑定方法
+vue 中：    methods 中
+htmlz中：   v-on:EventName="fn" 简写@EventName="fn"
+方法可以传参数
+demo:输入框内容回车变成列表
+事件传入： e.keyCode === 13 ,$event 传入
+也可以使用修饰符：@EventName.modifie="fn"
+.stop .prevent .capture .self .once    /    .enter .esc .right
+实现购物车demo
+
+v-for  响应式的理解
+
+一对多，多对一 ： view -> data set()方法中？{{}} 指令可以使用多次,view - data  多对一。
+
+动态属性绑定：
+
+class style  :class="" :style=""   对象或者数组
+
+计算属性：
+
+computed
+
+更新依赖列表，缓存结果，依赖改变则缓存失效 重新计算结果(调用get()方法)
+
+every() 都满足    forEach() 遍历    reduce() 累计
+
+total(){}  只有get()方法
+
+异步方法  watch
+
+当data中数据a发生变化时触发此函数
+    watch:{
+        a(){
+
+        }
+    }
+
+    watch:{
+        a:{
+            handler:{},
+            deep:true
+        }
+    }
+
+生命周期
+
+beforCreate/created ; beforMount/mounted ; beforUpdate/update ; beforDestroy/destroy
+
+ajax获取数据 赋值 给data  created 中
+
+过滤器 filter
+{{100  |  zhuanhuan }}
+filter{
+    zhuanhuan(val){
+        return "$" + val
+    }
+}
+
+自定义指令
+
+
+
+es6
+js
+nodejs
+工具包
+案例
+
+
+读文档
+读/写/做案列   组件 饿了吗
+源码分析
+
+
